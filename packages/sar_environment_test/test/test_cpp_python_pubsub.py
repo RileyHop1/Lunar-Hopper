@@ -30,8 +30,12 @@ def test_receives_cpp_message():
             ]
         ) as publisher:
             try:
-                rclpy.spin_until_future_complete(node, received, timeout_sec=5.0)
-                assert received.done(), "No message received from C++ within 5 seconds"
+                rclpy.spin_until_future_complete(
+                    node, received, timeout_sec=5.0
+                )
+                assert received.done(), (
+                    "No message received from C++ within 5 seconds"
+                )
                 assert received.result() == "hello from C++"
             finally:
                 publisher.kill()

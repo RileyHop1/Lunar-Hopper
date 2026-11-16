@@ -11,13 +11,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument(
     "--format",
     action="store_true",
-    help="Apply clang-format to the selected files."
+    help="Apply clang-format to the selected files.",
 )
 parser.add_argument(
-    "paths",
-    type=Path,
-    nargs="+",
-    help="Path to a file or directory"
+    "paths", type=Path, nargs="+", help="Path to a file or directory"
 )
 
 args = parser.parse_args()

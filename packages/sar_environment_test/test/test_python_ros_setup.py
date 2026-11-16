@@ -5,7 +5,7 @@ from rclpy.context import Context
 
 
 def test_creates_node():
-    context = Context();
+    context = Context()
     rclpy.init(context=context)
 
     try:

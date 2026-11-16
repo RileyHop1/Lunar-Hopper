@@ -30,3 +30,19 @@ Use `self` for instance methods and `cls` for class methods.
 - Catch specific exceptions you can handle. Let unexpected errors propagate to the layer responsible for reporting or recovery.
 
 See the [software development conventions](software-development-conventions.md) for how we document interfaces, write tests, and review changes.
+
+## Run Python checks
+
+Ruff checks Python in `packages/` and `scripts/`. The root `pyproject.toml` uses Ruff's default lint rules, Python 3.12, and a 79-character formatting target.
+
+From the repository root, activate a Python virtual environment and run the same commands as CI.
+
+```bash
+python -m pip install ruff==0.16.8
+ruff check packages scripts
+ruff format --check packages scripts
+```
+
+`ruff check` reports lint violations. `ruff format --check` reports files that need formatting. To apply formatting, run `ruff format packages scripts` and review the diff.
+
+GitHub Actions runs both checks on pull requests into `Development` and `main`. The Python job runs independently of the Jazzy build. In VS Code, the Ruff extension can use the same repository configuration. [Ruff tutorial](https://docs.astral.sh/ruff/tutorial/) · [Ruff editor setup](https://docs.astral.sh/ruff/editors/setup/)
