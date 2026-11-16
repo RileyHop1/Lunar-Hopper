@@ -1,0 +1,25 @@
+site_name: JDR SAR Drone
+site_description: Documentation for our autonomous search-and-rescue drone
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: readthedocs
+
+nav:
+  - Home: README.md
+  - Setting Up Your Environment:
+      - Start Here: environment/README.md
+      - Install and Verify Docker: environment/docker.md
+      - Start ROS 2 Jazzy: environment/ros-jazzy.md
+      - Verify Your Environment: environment/verify.md
+  - Project Planning:
+      - Software Roadmap: software-roadmap.md
+  - Contributing:
+      - Create a ROS 2 Package: create-ros-package.md
+      - Development Process: software-development-conventions.md
+      - Git Conventions: git-conventions.md
+      - C++ Conventions: cpp-conventions.md
+      - Check C++ Formatting and Naming: cpp-linting.md
+      - Python Conventions: python-conventions.md

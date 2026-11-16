@@ -1,0 +1,63 @@
+name: ROS 2 tests
+
+on:
+  pull_request:
+    branches: [Development, main]
+
+permissions:
+  contents: read
+
+jobs:
+  environment-test:
+    name: ROS 2 environment tests
+    runs-on: ubuntu-24.04-arm
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Build and test in Jazzy
+        run: |
+          docker run --rm \
+            --mount "type=bind,source=$GITHUB_WORKSPACE,target=/ros_ws" \
+            --workdir /ros_ws \
+            ros:jazzy-ros-base-noble bash -ec '
+              apt-get update
+              apt-get install -y clang-format clang-tidy
+              rosdep update --rosdistro jazzy
+              rosdep install --from-paths packages --ignore-src --rosdistro jazzy -y
+
+              colcon build --base-paths packages \
+                --cmake-args -DBUILD_TESTING=ON -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+              source install/setup.bash
+
+              python3 scripts/lint.py packages
+
+              test_status=0
+              colcon test --base-paths packages \
+                --packages-select sar_environment_test \
+                --return-code-on-test-failure \
+                --event-handlers console_direct+ \
+                --ctest-args --no-tests=error \
+                -R "^(test_cpp_ros_setup|python_ros_setup|cpp_python_pubsub)$" \
+                || test_status=$?
+              colcon test-result --verbose
+              exit "$test_status"
+            '
+
+  python-lint:
+    name: Python lint and formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install Ruff
+        id: install-ruff
+        run: python -m pip install ruff==0.16.8
+      - name: Lint Python
+        run: ruff check packages scripts
+      - name: Check Python formatting
+        if: ${{ !cancelled() && steps.install-ruff.outcome == 'success' }}
+        run: ruff format --check packages scripts

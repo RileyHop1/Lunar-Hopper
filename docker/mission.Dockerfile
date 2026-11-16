@@ -17,4 +17,6 @@ RUN source /opt/ros/jazzy/setup.bash \
 RUN source /opt/ros/jazzy/setup.bash \
     && colcon build
 
+ENV ROS_DOMAIN_ID=6
+
 CMD ["bash"]

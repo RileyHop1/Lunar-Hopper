@@ -2,6 +2,12 @@
 
 ROS 2 Jazzy software for an autonomous search-and-rescue drone.
 
+## Documentation
+
+- [Documentation home](https://rileyhop1.github.io/SAR_DRONE/) for available published versions.
+- [Development documentation](https://rileyhop1.github.io/SAR_DRONE/development/) for the project overview, software roadmap, and contributing guides.
+- [Documentation source](docs/README.md) for the Markdown files in this repository.
+
 ## Architecture
 
 - **Raspberry Pi:** mission management and communication with PX4.
@@ -21,6 +27,7 @@ sar-drone/
 │   ├── sar_bringup/       # Launch files and ROS configuration
 │   └── sar_simulation/    # Gazebo worlds, models, and simulation setup
 ├── docker/               # Mission, vision, and simulation Dockerfiles
+├── scripts/              # Local and CI tooling, including C++ linting
 ├── deployment/
 │   ├── pi/               # Pi deployment configuration
 │   ├── jetson/           # Jetson deployment configuration
@@ -29,6 +36,10 @@ sar-drone/
 ├── .github/workflows/    # Automated checks and builds
 └── docs/                 # Project documentation
 ```
+
+## C++ checks
+
+From the repository root in the Jazzy container, run `python3 scripts/lint.py packages` after building with compiler database generation enabled. See the [C++ linting guide](docs/cpp-linting.md) for tool installation, build commands, and formatting options.
 
 ## Build and Deployment
 
