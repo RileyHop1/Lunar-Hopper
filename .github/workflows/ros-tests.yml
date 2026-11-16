@@ -43,3 +43,21 @@ jobs:
               colcon test-result --verbose
               exit "$test_status"
             '
+
+  python-lint:
+    name: Python lint and formatting
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Install Ruff
+        id: install-ruff
+        run: python -m pip install ruff==0.16.8
+      - name: Lint Python
+        run: ruff check packages scripts
+      - name: Check Python formatting
+        if: ${{ !cancelled() && steps.install-ruff.outcome == 'success' }}
+        run: ruff format --check packages scripts
