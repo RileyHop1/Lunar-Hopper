@@ -18,11 +18,27 @@ The project builds on the ROS 2 Jazzy development environment from the original 
 
 ## Repository structure
 
-- `packages/` contains the ROS 2 workspace packages, including the current environment tests.
-- `docker/` and `deployment/` contain container and deployment work.
-- `scripts/` and `.github/workflows/` contain development tools and automation.
-- `firmware/` is reserved for flight-controller work.
-- `docs/` contains project documentation.
+```text
+.
+├── packages/                     # ROS 2 Jazzy workspace
+│   ├── sar_environment_test/      # Existing ROS 2 smoke tests
+│   └── lunar_hopper_mapper/       # Planned basic package for the detachable mapper
+├── docker/
+│   └── mission.Dockerfile         # ARM64 image build used as the Jetson starting point
+├── deployment/                   # Onboard deployment scripts and configuration
+├── firmware/                     # Reserved for PX4 configuration and firmware work
+├── scripts/
+│   └── lint.py                    # Local and CI C++ checks
+├── .github/
+│   └── workflows/                 # ROS tests, documentation, and image publishing
+├── docs/
+│   ├── README.md                  # Lunar Hopper project overview
+│   ├── environment/              # Development environment setup
+│   └── software-roadmap.md        # Software milestones and dependencies
+└── mkdocs.yml                    # Documentation site configuration
+```
+
+The basic mapper package setup is tracked in [JDR-55](https://uwjdr.atlassian.net/browse/JDR-55). The existing smoke-test package will get a Lunar Hopper name in [JDR-54](https://uwjdr.atlassian.net/browse/JDR-54).
 
 ## C++ checks
 
