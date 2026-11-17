@@ -9,6 +9,7 @@ theme:
 
 nav:
   - Home: README.md
+  - Why We Switched to Lunar Hopper: why-lunar-hopper.md
   - Setting Up Your Environment:
       - Start Here: environment/README.md
       - Install and Verify Docker: environment/docker.md

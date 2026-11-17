@@ -8,6 +8,8 @@ The drone carries a detachable Jetson module with a camera and LiDAR. The module
 
 [Firefly Aerospace’s Blue Ghost mission](https://www.nasa.gov/news-release/touchdown-carrying-nasa-science-fireflys-blue-ghost-lands-on-moon/) provides context for lunar surface science. [Intuitive Machines’ Grace hopper](https://www.nasa.gov/mission/polar-resources-ice-mining-experiment-1-prime-1/) is a reference for the planned use of hops to reach additional survey sites.
 
+Read [Why we switched to Lunar Hopper](why-lunar-hopper.md) for the story behind the project.
+
 ## Project goals
 
 - Demonstrate standalone camera and LiDAR operation on the Jetson module.
