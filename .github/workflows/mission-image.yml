@@ -9,7 +9,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE: ghcr.io/rileyhop1/sar-mission
+  IMAGE: ghcr.io/rileyhop1/lunar-hopper-mission
 
 jobs:
   publish:
