@@ -32,7 +32,7 @@ For editor diagnostics, open the workspace in the Jazzy container using VS Code 
 {
   "clangd.arguments": [
     "--clang-tidy",
-    "--compile-commands-dir=/ros_ws/build/sar_environment_test"
+    "--compile-commands-dir=/ros_ws/build/lunar_hopper_environment_test"
   ]
 }
 ```

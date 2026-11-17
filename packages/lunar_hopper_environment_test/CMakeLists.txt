@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(sar_environment_test)
+project(lunar_hopper_environment_test)
 
 if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wall -Wextra -Wpedantic)
@@ -26,7 +26,7 @@ if(BUILD_TESTING)
   add_executable(cpp_setup_publisher test/cpp_setup_publisher.cpp)
   ament_target_dependencies(cpp_setup_publisher rclcpp std_msgs)
   ament_add_pytest_test(cpp_python_pubsub test/test_cpp_python_pubsub.py
-    ENV "SAR_TEST_PUBLISHER=$<TARGET_FILE:cpp_setup_publisher>"
+    ENV "LUNAR_HOPPER_TEST_PUBLISHER=$<TARGET_FILE:cpp_setup_publisher>"
     TIMEOUT 20
   )
 

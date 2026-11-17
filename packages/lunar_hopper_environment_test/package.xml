@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>sar_environment_test</name>
+  <name>lunar_hopper_environment_test</name>
   <version>0.0.0</version>
   <description>This is a test package to see if your Ros 2 is correctly setup.</description>
   <maintainer email="root@todo.todo">Riley Hopper</maintainer>

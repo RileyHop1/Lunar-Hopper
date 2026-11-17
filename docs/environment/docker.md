@@ -5,7 +5,7 @@
 - Use a supported macOS, Windows, or Ubuntu release. Check the platform guide below for requirements and choose an installer that matches your processor.
 - Have internet access to download Docker and pull container images. Use a machine where you can install software and enable virtualization if needed.
 - Install Git and confirm it works with `git --version`. On Windows, run that check in your Ubuntu WSL terminal once WSL is installed. [Git installation](https://git-scm.com/install/)
-- Make sure you can access the SAR_DRONE repository with your GitHub account. A code editor is useful for working on the checkout.
+- Make sure you can access the Lunar Hopper repository with your GitHub account. A code editor is useful for working on the checkout.
 
 Docker will supply the Linux environment for ROS 2 Jazzy. The checks on this page verify Docker itself. The project container and ROS checks have their own guides.
 
@@ -65,8 +65,8 @@ docker run --rm hello-world
 If you already cloned the project, open your existing checkout. Otherwise run these commands from the directory where you keep your projects.
 
 ```bash
-git clone https://github.com/RileyHop1/SAR_DRONE.git
-cd SAR_DRONE
+git clone https://github.com/RileyHop1/Lunar-Hopper.git
+cd Lunar-Hopper
 git status --short --branch
 ```
 

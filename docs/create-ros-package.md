@@ -4,9 +4,9 @@ Start with [Start ROS 2 Jazzy](environment/ros-jazzy.md) and [Verify Your Enviro
 
 ## Choose the name and build type
 
-Use a short, lowercase name with underscores and the `sar_` prefix, such as `sar_status`. Name the package after its responsibility and check whether an existing package already owns that work.
+Use a short, lowercase name with underscores and the `lunar_hopper_` prefix, such as `lunar_hopper_status`. Name the package after its responsibility and check whether an existing package already owns that work.
 
-- Use `ament_cmake` for C++ or a package that builds C++ and registers Python tests, like `sar_environment_test`.
+- Use `ament_cmake` for C++ or a package that builds C++ and registers Python tests, like `lunar_hopper_environment_test`.
 - Use `ament_python` for a Python-only package that uses setuptools.
 
 ## Generate the package
@@ -18,7 +18,7 @@ Choose one command. Both examples use the same package name. Replace the example
 ```bash
 cd /ros_ws
 ros2 pkg create --destination-directory packages --build-type ament_cmake \
-  --node-name status_node sar_status --dependencies rclcpp
+  --node-name status_node lunar_hopper_status --dependencies rclcpp
 ```
 
 **Python**
@@ -26,14 +26,14 @@ ros2 pkg create --destination-directory packages --build-type ament_cmake \
 ```bash
 cd /ros_ws
 ros2 pkg create --destination-directory packages --build-type ament_python \
-  --node-name status_node sar_status --dependencies rclpy
+  --node-name status_node lunar_hopper_status --dependencies rclpy
 ```
 
 - `ros2 pkg create` generates the package skeleton.
 - `--destination-directory packages` puts it under the repo's source directory.
 - `--build-type` selects the build system.
 - `--node-name status_node` adds a starter executable for the validation below. Omit it for a package that only provides a library, interfaces, or tests.
-- `sar_status` is the package name. `--dependencies` adds the client library dependency to the generated package.
+- `lunar_hopper_status` is the package name. `--dependencies` adds the client library dependency to the generated package.
 
 ## Review the generated files
 
@@ -43,7 +43,7 @@ ros2 pkg create --destination-directory packages --build-type ament_python \
 | `CMakeLists.txt` (C++) | Check the executable target, library dependencies, and install destination under `lib/${PROJECT_NAME}` so `ros2 run` can find it. Register tests inside `if(BUILD_TESTING)`. |
 | `setup.py` (Python) | Check the package metadata and the `console_scripts` entry that maps the executable name to the module's `main` function. Keep metadata consistent with `package.xml`. |
 | `setup.cfg` (Python) | Keep the generated script installation settings so `ros2 run` can find the executable. |
-| `src/` (C++) or `sar_status/` (Python) | Put implementation code here. Use `test/` for package tests. |
+| `src/` (C++) or `lunar_hopper_status/` (Python) | Put implementation code here. Use `test/` for package tests. |
 
 Follow the [software development conventions](software-development-conventions.md) when defining interfaces and writing tests. Use the [C++ conventions](cpp-conventions.md) or [Python conventions](python-conventions.md) for the implementation.
 
@@ -53,10 +53,10 @@ Run these commands one at a time from `/ros_ws`. Stop if a command fails.
 
 ```bash
 colcon list --base-paths packages
-colcon build --base-paths packages --packages-up-to sar_status
+colcon build --base-paths packages --packages-up-to lunar_hopper_status
 source install/setup.bash
-ros2 pkg prefix sar_status
-ros2 run sar_status status_node
+ros2 pkg prefix lunar_hopper_status
+ros2 run lunar_hopper_status status_node
 ```
 
 1. `colcon list` searches `packages/` and should list the new package.
@@ -68,7 +68,7 @@ ros2 run sar_status status_node
 For a package with registered tests, run the package's checks and inspect the results.
 
 ```bash
-colcon test --base-paths packages --packages-select sar_status \
+colcon test --base-paths packages --packages-select lunar_hopper_status \
   --return-code-on-test-failure
 colcon test-result --verbose
 ```
