@@ -1,108 +1,23 @@
-# Software Roadmap
+# Software roadmap
 
-Working draft for JDR-39. Updated November 11, 2026.
+This working plan supports the [Lunar Hopper transition](https://uwjdr.atlassian.net/browse/JDR-51). See the [project overview](README.md) for the mission and demonstrator scope.
 
-Our baseline goal is to execute a planned search, detect a possible person, and report their estimated ground location. Adaptive search planning is a stretch goal.
+## 1. Carry forward the development foundation
 
-The six goals discussed by the team are grouped into three sections below. We will expand their expectations, dependencies, verification, owners, and dates as we work through the plan.
+The ROS 2 Jazzy workspace, ARM64 container build, and GitHub Actions checks provide the starting point. The existing tests check C++ and Python node startup and C++ to Python messaging. The [environment guide](environment/README.md) explains how to run them.
 
-Follow the [software development conventions](software-development-conventions.md) and [C++ conventions](cpp-conventions.md).
+- Update the project documentation and the repository and test identifiers in [JDR-49](https://uwjdr.atlassian.net/browse/JDR-49) and [JDR-54](https://uwjdr.atlassian.net/browse/JDR-54).
+- Extend the current C++ and Python CI checks in [JDR-53](https://uwjdr.atlassian.net/browse/JDR-53).
+- Create the basic ROS 2 package in [JDR-55](https://uwjdr.atlassian.net/browse/JDR-55). The package milestone is a clean build and discovery by ROS 2.
 
-## Timeline at a glance
+## 2. Plan the standalone mapper and carrier
 
-![Three phases in order. Development foundation and ROS setup is the current focus, followed by simulation and SAR interfaces, then the baseline SAR mission and onboard integration.](assets/software-roadmap.svg)
+- Estimate the full payload's weight and power needs and document the mount and connections in [JDR-58](https://uwjdr.atlassian.net/browse/JDR-58).
+- Use those estimates to compare the existing airframe with a prebuilt PX4-compatible option in [JDR-59](https://uwjdr.atlassian.net/browse/JDR-59).
+- Retarget the ARM64 image and verify that it starts on the selected Jetson runtime in [JDR-52](https://uwjdr.atlassian.net/browse/JDR-52). Use the deployment script tracked in [JDR-47](https://uwjdr.atlassian.net/browse/JDR-47).
 
-The diagram shows the planned sequence. Dates depend on the team’s schedule and confirmed demo deadline.
+## 3. Define the demonstration
 
-## 1. Development foundation and ROS setup
+The proposed sequence is to verify standalone capture on the bench, then carry the module between scan sites with the drone and combine observations from overlapping viewpoints. The team still needs to agree on how scans are triggered, the map output, and what evidence will show the demo succeeded. Autonomous sequencing can follow the manually flown baseline.
 
-Establish a repeatable way for the team to develop, check, build, deploy, and run the software. This is the current focus. Tool suggestions and open decisions remain provisional until their implementation tickets are worked through.
-
-### Already established
-
-- Created the repository and documented the intended package and deployment layout.
-- Created the Pi mission Dockerfile using ROS 2 Jazzy on Ubuntu 24.04, including package copying, dependency installation, and colcon build steps.
-- Wrote the GitHub Actions workflow to build an ARM64 Pi image on pushes to `main`, check the ROS CLI, and publish a commit-tagged image to GitHub Container Registry (GHCR).
-- Documented the initial onboard architecture in JDR-32 and recorded C++ style conventions.
-
-Successful image building and publishing still need verified run evidence. The ROS CLI check establishes that the CLI starts.
-
-### Work to plan
-
-- Configure tests and lint checks as merge requirements for `Development`, and recheck them before merging into `main`.
-- Set up GoogleTest for C++ and agree on Python testing.
-- Agree on linting and formatting tools, versions, rules, and generated-code exceptions.
-- Provide simple local check, format, and test commands, plus shared VS Code configuration.
-- Configure Pi, Jetson, and laptop development environments and dependencies.
-- Establish package structure, launch configuration, and basic ROS publisher/subscriber communication.
-- Establish an onboard process to pull a selected container image from GHCR, configure it, and start it on the drone. Begin with the Pi and plan equivalent support for the Jetson.
-- Verify installation, startup, version reporting, update health checks, and recovery to a working version.
-- Document teammate setup, onboard installation, and how to reproduce CI checks locally.
-
-### Proposals and open decisions
-
-- Proposed tools are clang-tidy, clang-format, ament_cmake_gtest, pytest, and Ruff.
-- Candidate local commands are `make lint`, `make format`, and `make test`.
-- Define package ownership, platform compatibility, and how dependencies are pinned.
-
-### Deployment proposals and open decisions
-
-- A systemd service is a candidate for managing onboard image retrieval and setup.
-- How does the Pi discover an approved GHCR tag or digest, and what triggers an update check?
-- How are Pi and Jetson releases kept compatible?
-- How are registry access and downloads configured?
-- How do we confirm the aircraft is grounded, disarmed, and outside an active mission before activation?
-- What health checks confirm success, and what triggers rollback?
-- How do updates recover from interrupted downloads, unavailable networking, power loss, or application failure?
-
-The initial completion expectation is that a teammate can build the project, run its checks, pull and start a selected image on the onboard computer, identify the running version, and demonstrate basic ROS communication using the documented steps.
-
-## 2. Simulation and SAR interfaces
-
-Establish simulation before depending on it to validate mission behavior. Interface design can proceed alongside simulation setup.
-
-### Work to plan
-
-- Bring up Gazebo and PX4 SITL on the development laptop and connect ROS 2.
-- Demonstrate basic simulated flight commands and telemetry first.
-- Add simulated cameras and target detection in a later increment.
-- Define interfaces for search requests, progress, detections, flight requests, and results.
-- Choose topics, services, or actions according to each interaction's requirements.
-- Agree on message fields, units, coordinate frames, timestamps, synchronization, and error behavior.
-- Create initial nodes with synthetic inputs and repeatable launch commands.
-- Add ROS integration tests and reusable simulation scenarios.
-
-### Open decisions
-
-- Which basic flight scenario proves the simulation connection works?
-- Which interfaces are needed for that first scenario?
-- How will simulated and recorded inputs exercise the same interfaces as hardware?
-
-The initial completion expectation is a reproducible simulated flight with ROS commands and telemetry, followed by tested initial SAR interfaces. Hardware communication and camera-access checks can proceed early to expose integration problems.
-
-## 3. Baseline SAR mission and onboard integration
-
-Build and verify the search mission, then demonstrate the complete flow on the aircraft.
-
-### Work to plan
-
-- Implement search-area input, mission states, search execution, interruption, progress, and completion.
-- Integrate RGB and thermal perception and candidate detections.
-- Decide ownership of ground-location estimation and define its required calibration, pose, camera pointing, and ground reference.
-- Define the operator report and evaluate detection performance and location error.
-- Run packages on the Pi and Jetson and integrate the physical cameras and Pixhawk.
-- Confirm Ethernet switch ports and video routing, and establish the Pi–Pixhawk UART link through TELEM2.
-- Define logs, recordings, fault reporting, storage limits, and software version identification.
-- Test startup, communication loss, recovery, and progression from bench testing to controlled flight.
-- Keep adding unit, integration, simulation, and hardware tests as behavior is implemented.
-
-### Open acceptance decisions
-
-- Agree on the demo deadline and team capacity.
-- Define acceptable detection performance and target-location error.
-- Select the operator reporting interface.
-- Define the evidence required before progressing from simulation to bench testing and flight.
-
-The completion expectation is a demonstrated baseline SAR mission against agreed acceptance criteria. Adaptive replanning can follow once the baseline is verified.
-
-For each section, agree on its detailed expectations and dependencies before assigning milestones and creating implementation tickets.
+The [previous SAR roadmap](https://github.com/RileyHop1/SAR_DRONE/blob/665cfd7ad11caf90c4cba1583f458345bb0709cf/docs/software-roadmap.md) preserves the original development plan and diagram.

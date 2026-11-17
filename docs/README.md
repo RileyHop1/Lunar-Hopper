@@ -1,37 +1,26 @@
-# SAR Drone Documentation
+# Lunar Hopper documentation
 
 ## Introduction
 
-JDR is developing an autonomous search-and-rescue drone as a senior engineering project. Our goal is to help search teams survey difficult terrain and identify locations worth investigating. The prototype combines a reviewed search route, RGB and thermal observations, estimated candidate locations, and evidence for human assessment.
+JDR is shifting its senior engineering project from a search-and-rescue drone to **Lunar Hopper — A Terrain Mapping Demonstrator**. The project uses an Earth-based drone to simulate movement between lunar scan sites.
 
-The intended workflow starts with an operator defining a search area, reviewing the route, and authorizing launch. During the supervised mission, the drone follows the planned route and flags possible people. It sends status and candidate-location updates when communications permit and retains imagery and records for later review. The mission concludes with return or an appropriate recovery response.
+The drone carries a detachable Jetson module with a camera and LiDAR. The module gathers observations from multiple viewpoints and combines them into a terrain map. It also operates independently on the bench.
 
-This overview draws on the team's product requirements, design specification, and master test plan. They describe a prototype under development with performance targets and acceptance decisions still to resolve.
+[Firefly Aerospace’s Blue Ghost mission](https://www.nasa.gov/news-release/touchdown-carrying-nasa-science-fireflys-blue-ghost-lands-on-moon/) provides context for lunar surface science. [Intuitive Machines’ Grace hopper](https://www.nasa.gov/mission/polar-resources-ice-mining-experiment-1-prime-1/) is a reference for the planned use of hops to reach additional survey sites.
+
+Read [Why we switched to Lunar Hopper](why-lunar-hopper.md) for the story behind the project.
 
 ## Project goals
 
-- Execute an operator-approved search and record progress against the planned route.
-- Use RGB and thermal observations to identify possible people.
-- Associate candidate observations with estimated coordinates, timestamps, and reviewable evidence.
-- Provide concise updates when connected and retain records through communication outages.
-- Support operator intervention and defined return, low-energy, lost-link, and navigation-failure responses.
-- Demonstrate the complete workflow with reproducible tests and documented limitations.
+- Demonstrate standalone camera and LiDAR operation on the Jetson module.
+- Use short drone flights to move the module between overlapping viewpoints.
+- Combine observations from multiple viewpoints into a terrain map and retain the underlying captures for review.
 
-Detection performance, location error, endurance, and operating limits require agreed acceptance criteria and measured evidence. Adaptive mission planning is a stretch goal. The source drafts also classify in-flight image transmission as stretch work; its priority needs reconciliation with the team's newer video-link design discussions.
+## Prototype scope
 
-## System at a glance
+The team is planning an Earth-based demonstrator. Two short drone flights between three scan sites are a candidate demo sequence. Manual flight is the baseline. Autonomous hop sequencing is a stretch goal. The [hardware plan](https://uwjdr.atlassian.net/browse/JDR-58) and [carrier selection](https://uwjdr.atlassian.net/browse/JDR-59) track the open hardware decisions.
 
-The current software planning uses three onboard computers.
-
-| Computer | Planned responsibility |
-| --- | --- |
-| Raspberry Pi | ROS 2 Jazzy mission management and coordination |
-| Jetson Orin Nano Super | RGB and thermal processing and candidate detections |
-| Pixhawk 6C Mini | PX4 flight control running on NuttX |
-
-Laptop development and Gazebo simulation support testing before hardware integration. Current component choices and software planning appear in the [software roadmap](software-roadmap.md). The earlier design specification establishes broader mission, sensing, evidence, communications, and operator-interface responsibilities, with hardware selections still provisional in that document.
-
-Validation will progress through software and simulation checks, bench integration, and authorized supervised flight. Test records should identify the configuration, expected behavior, actual results, and supporting evidence. The master test plan covers nominal missions and failures such as communication loss, low energy, and uncertain navigation.
+The ROS 2 Jazzy workspace, Docker setup, and existing tests carry forward. See the [software roadmap](software-roadmap.md) for the migration work and open decisions.
 
 ## Start here
 
@@ -49,17 +38,17 @@ This is a provisional navigation structure for team review. Entries marked plann
 
 | Section | What readers should find | Current material |
 | --- | --- | --- |
-| Project overview | Purpose, goals, scope, operator workflow, and project status | This home page |
+| Project overview | Purpose, goals, scope, and mission workflow | This home page |
 | Getting started | Required tools, local setup, container builds, first ROS run, and troubleshooting | [Environment setup](environment/README.md) |
-| Architecture and interfaces | System diagram, computer responsibilities, package structure, message definitions, and design decisions | Diagram tracked in JDR-32; website page planned |
+| Architecture and interfaces | System diagram, package structure, message definitions, and design decisions | New architecture to be scoped |
 | Development guide | Git workflow, documentation-first development, testing workflow, naming, and formatting | [Git](git-conventions.md), [development](software-development-conventions.md), [C++](cpp-conventions.md), and [Python](python-conventions.md) conventions |
-| Simulation and testing | Gazebo/PX4 setup, test commands, scenarios, requirement traceability, and results | Practical guides planned |
-| Deployment and operation | Image publishing, Pi/Jetson startup, updates, health checks, rollback, and evidence retrieval | Planned |
+| Simulation and testing | Simulation setup, test commands, scenarios, and results | Practical guides planned |
+| Deployment and operation | Prototype setup and operation, health checks, and map and data retrieval | Planned |
 | Roadmap and project status | Major goals, dependencies, open decisions, and verified progress | [Software roadmap](software-roadmap.md) |
 
-## Source documents
+## Previous project documentation
 
-This overview was prepared from the following working documents, reviewed November 11, 2026. Their open decisions and provisional criteria will need reconciliation as the implementation develops.
+The following working documents describe the original search-and-rescue mission and preserve the context for earlier design and test decisions. The Lunar Hopper transition is tracked in [JDR-51](https://uwjdr.atlassian.net/browse/JDR-51).
 
 - **PRD_SAR_DRONE.docx** describes user needs, product goals, scope, constraints, and proposed release criteria.
 - **DESIGN_SPEC_SAR_DRONE.docx** describes system responsibilities, architecture, interfaces, and implementation details to develop.
@@ -78,4 +67,4 @@ This overview was prepared from the following working documents, reviewed Novemb
 - Cite external references and record relevant decisions so teammates can trace their context.
 - Review documentation through the branch and PR process described in the Git conventions.
 
-These Markdown files will supply the GitHub Pages documentation website. Website setup follows review of this outline.
+These Markdown files supply the GitHub Pages documentation website.

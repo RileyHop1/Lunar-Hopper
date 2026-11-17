@@ -1,6 +1,6 @@
 # Start Here
 
-Use this section to set up a development environment for the SAR drone project. The guides cover macOS, Windows, and Ubuntu. Start on your development computer, where you edit the code and run local checks.
+Use this section to set up the ROS 2 development environment for Lunar Hopper. The guides cover macOS, Windows, and Ubuntu. Start on your development computer, where you edit the code and run local checks.
 
 ## How the tools fit together
 

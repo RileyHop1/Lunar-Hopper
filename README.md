@@ -1,6 +1,8 @@
-# SAR Drone
+# Lunar Hopper — A Terrain Mapping Demonstrator
 
-ROS 2 Jazzy software for an autonomous search-and-rescue drone.
+Lunar Hopper is JDR's senior engineering project to demonstrate terrain mapping between sites. An Earth-based drone carries a detachable Jetson module with a camera and LiDAR. The drone's short flights stand in for lunar hops, and the module can collect data and build a terrain map on its own.
+
+The project builds on the ROS 2 Jazzy development environment from the original search-and-rescue drone. See the [project overview](docs/README.md) for the new mission and prototype scope, and the [software roadmap](docs/software-roadmap.md) for open design decisions.
 
 ## Documentation
 
@@ -8,41 +10,40 @@ ROS 2 Jazzy software for an autonomous search-and-rescue drone.
 - [Development documentation](https://rileyhop1.github.io/SAR_DRONE/development/) for the project overview, software roadmap, and contributing guides.
 - [Documentation source](docs/README.md) for the Markdown files in this repository.
 
-## Architecture
+## System overview
 
-- **Raspberry Pi:** mission management and communication with PX4.
-- **Jetson Orin Nano Super:** vision processing using OpenCV and detection models.
-- **Pixhawk:** PX4 flight control running on NuttX.
-- **Laptop:** development and Gazebo Harmonic simulation.
+- **Carrier drone:** PX4 is the baseline for flight control. The team is comparing the existing airframe with a prebuilt PX4-compatible option.
+- **Detachable mapper:** The Jetson module handles camera and LiDAR capture and terrain mapping. It can also operate on the bench.
+- **Development:** ROS 2 Jazzy, Docker, and the existing CI checks support the transition.
 
-## Repository Structure
+## Repository structure
 
 ```text
-sar-drone/
-├── packages/
-│   ├── sar_interfaces/    # Shared ROS messages, services, and actions
-│   ├── sar_mission/       # Search planning and mission management
-│   ├── sar_vision/        # Camera processing and detection
-│   ├── sar_px4/           # ROS integration with PX4
-│   ├── sar_bringup/       # Launch files and ROS configuration
-│   └── sar_simulation/    # Gazebo worlds, models, and simulation setup
-├── docker/               # Mission, vision, and simulation Dockerfiles
-├── scripts/              # Local and CI tooling, including C++ linting
-├── deployment/
-│   ├── pi/               # Pi deployment configuration
-│   ├── jetson/           # Jetson deployment configuration
-│   └── laptop/           # Local simulation configuration
-├── firmware/             # PX4 version, parameters, and firmware instructions
-├── .github/workflows/    # Automated checks and builds
-└── docs/                 # Project documentation
+.
+├── packages/                     # ROS 2 Jazzy workspace
+│   ├── sar_environment_test/      # Existing ROS 2 smoke tests
+│   └── lunar_hopper_mapper/       # Planned basic package for the detachable mapper
+├── docker/
+│   └── mission.Dockerfile         # ARM64 image build used as the Jetson starting point
+├── deployment/                   # Onboard deployment scripts and configuration
+├── firmware/                     # Reserved for PX4 configuration and firmware work
+├── scripts/
+│   └── lint.py                    # Local and CI C++ checks
+├── .github/
+│   └── workflows/                 # ROS tests, documentation, and image publishing
+├── docs/
+│   ├── README.md                  # Lunar Hopper project overview
+│   ├── environment/              # Development environment setup
+│   └── software-roadmap.md        # Software milestones and dependencies
+└── mkdocs.yml                    # Documentation site configuration
 ```
+
+The basic mapper package setup is tracked in [JDR-55](https://uwjdr.atlassian.net/browse/JDR-55). The existing smoke-test package will get a Lunar Hopper name in [JDR-54](https://uwjdr.atlassian.net/browse/JDR-54).
 
 ## C++ checks
 
 From the repository root in the Jazzy container, run `python3 scripts/lint.py packages` after building with compiler database generation enabled. See the [C++ linting guide](docs/cpp-linting.md) for tool installation, build commands, and formatting options.
 
-## Build and Deployment
+## Build and deployment
 
-GitHub Actions builds and publishes separate mission and vision images from `main`. The Pi and Jetson pull matching releases and activate updates while grounded, disarmed, and outside an active mission.
-
-Laptop simulation reuses the onboard ROS packages with simulated hardware. Pixhawk firmware is built and flashed separately; it is excluded from onboard container images.
+Follow [the environment setup guide](docs/environment/README.md) to build the Jazzy workspace and run the existing tests. The current ARM64 build is the starting point for [Jetson deployment work](https://uwjdr.atlassian.net/browse/JDR-52).
