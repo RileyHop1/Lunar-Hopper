@@ -22,7 +22,7 @@ jobs:
       - name: Check ROS 2 workspace
         run: |
           docker run --rm "$IMAGE:$GITHUB_SHA" \
-            bash -c 'source /ros_ws/install/setup.bash && ros2 pkg prefix sar_environment_test'
+            bash -c 'source /ros_ws/install/setup.bash && ros2 pkg prefix lunar_hopper_environment_test'
       - name: Sign in to GHCR
         uses: docker/login-action@v4
         with:

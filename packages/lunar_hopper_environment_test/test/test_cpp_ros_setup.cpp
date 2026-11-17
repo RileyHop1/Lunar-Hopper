@@ -10,8 +10,9 @@ TEST(CppRosSetup, CreatesNode) {
   options.context(context);
 
   {
-    auto node = std::make_shared<rclcpp::Node>("sar_cpp_setup_test", options);
-    EXPECT_STREQ(node->get_name(), "sar_cpp_setup_test");
+    auto node =
+        std::make_shared<rclcpp::Node>("lunar_hopper_cpp_setup_test", options);
+    EXPECT_STREQ(node->get_name(), "lunar_hopper_cpp_setup_test");
   }
 
   context->shutdown("C++ setup test complete");
