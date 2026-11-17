@@ -1,5 +1,5 @@
-site_name: JDR SAR Drone
-site_description: Documentation for our autonomous search-and-rescue drone
+site_name: Lunar Hopper
+site_description: Documentation for the Lunar Hopper terrain mapping demonstrator
 
 docs_dir: docs
 site_dir: site
