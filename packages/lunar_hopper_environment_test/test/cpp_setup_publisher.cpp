@@ -8,8 +8,8 @@ int main(int argc, char **argv) {
   rclcpp::init(argc, argv);
 
   auto node = std::make_shared<rclcpp::Node>("lunar_hopper_setup_publisher");
-  auto publisher =
-      node->create_publisher<std_msgs::msg::String>("lunar_hopper_setup_check", 10);
+  auto publisher = node->create_publisher<std_msgs::msg::String>(
+      "lunar_hopper_setup_check", 10);
 
   auto timer =
       node->create_wall_timer(std::chrono::milliseconds(100), [&publisher]() {

@@ -10,7 +10,8 @@ TEST(CppRosSetup, CreatesNode) {
   options.context(context);
 
   {
-    auto node = std::make_shared<rclcpp::Node>("lunar_hopper_cpp_setup_test", options);
+    auto node =
+        std::make_shared<rclcpp::Node>("lunar_hopper_cpp_setup_test", options);
     EXPECT_STREQ(node->get_name(), "lunar_hopper_cpp_setup_test");
   }
 
