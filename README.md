@@ -21,7 +21,7 @@ The project builds on the ROS 2 Jazzy development environment from the original 
 ```text
 .
 ├── packages/                     # ROS 2 Jazzy workspace
-│   ├── sar_environment_test/      # Existing ROS 2 smoke tests
+│   ├── lunar_hopper_environment_test/      # Existing ROS 2 smoke tests
 │   └── lunar_hopper_mapper/       # Planned basic package for the detachable mapper
 ├── docker/
 │   └── mission.Dockerfile         # ARM64 image build used as the Jetson starting point
@@ -38,7 +38,7 @@ The project builds on the ROS 2 Jazzy development environment from the original 
 └── mkdocs.yml                    # Documentation site configuration
 ```
 
-The basic mapper package setup is tracked in [JDR-55](https://uwjdr.atlassian.net/browse/JDR-55). The existing smoke-test package will get a Lunar Hopper name in [JDR-54](https://uwjdr.atlassian.net/browse/JDR-54).
+The basic mapper package setup is tracked in [JDR-55](https://uwjdr.atlassian.net/browse/JDR-55). The smoke-test package rename is tracked in [JDR-54](https://uwjdr.atlassian.net/browse/JDR-54).
 
 ## C++ checks
 

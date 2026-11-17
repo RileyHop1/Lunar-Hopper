@@ -57,10 +57,10 @@ jobs:
             <head>
               <meta charset="utf-8">
               <meta name="viewport" content="width=device-width, initial-scale=1">
-              <title>JDR SAR Drone Documentation</title>
+              <title>Lunar Drone Documentation</title>
             </head>
             <body>
-              <h1>JDR SAR Drone Documentation</h1>
+              <h1>Lunar Drone Documentation</h1>
           HTML
 
           for version in stable development; do

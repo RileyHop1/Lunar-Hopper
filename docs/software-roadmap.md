@@ -20,4 +20,4 @@ The ROS 2 Jazzy workspace, ARM64 container build, and GitHub Actions checks prov
 
 The proposed sequence is to verify standalone capture on the bench, then carry the module between scan sites with the drone and combine observations from overlapping viewpoints. The team still needs to agree on how scans are triggered, the map output, and what evidence will show the demo succeeded. Autonomous sequencing can follow the manually flown baseline.
 
-The [previous SAR roadmap](https://github.com/RileyHop1/SAR_DRONE/blob/665cfd7ad11caf90c4cba1583f458345bb0709cf/docs/software-roadmap.md) preserves the original development plan and diagram.
+The [previous SAR roadmap](https://github.com/RileyHop1/Lunar-Hopper/blob/665cfd7ad11caf90c4cba1583f458345bb0709cf/docs/software-roadmap.md) preserves the original development plan and diagram.
