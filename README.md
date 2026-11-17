@@ -6,8 +6,8 @@ The project builds on the ROS 2 Jazzy development environment from the original 
 
 ## Documentation
 
-- [Documentation home](https://rileyhop1.github.io/SAR_DRONE/) for available published versions.
-- [Development documentation](https://rileyhop1.github.io/SAR_DRONE/development/) for the project overview, software roadmap, and contributing guides.
+- [Documentation home](https://rileyhop1.github.io/Lunar-Hopper/) for available published versions.
+- [Development documentation](https://rileyhop1.github.io/Lunar-Hopper/development/) for the project overview, software roadmap, and contributing guides.
 - [Documentation source](docs/README.md) for the Markdown files in this repository.
 
 ## System overview
