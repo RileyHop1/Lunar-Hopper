@@ -4,7 +4,7 @@ Use the same ROS 2 Jazzy base image as the project's Pi mission Dockerfile to op
 
 ## Before you start
 
-Complete [Install and Verify Docker](docker.md), then open a terminal at the root of your SAR_DRONE checkout. On macOS, use Terminal and keep Docker Desktop running. On Windows, use the Ubuntu WSL terminal with Docker Desktop integration enabled. On Ubuntu, use your normal terminal and start Docker Engine if needed.
+Complete [Install and Verify Docker](docker.md), then open a terminal at the root of your Lunar Hopper checkout. On macOS, use Terminal and keep Docker Desktop running. On Windows, use the Ubuntu WSL terminal with Docker Desktop integration enabled. On Ubuntu, use your normal terminal and start Docker Engine if needed.
 
 ## Start the container
 

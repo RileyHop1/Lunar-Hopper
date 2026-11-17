@@ -11,22 +11,22 @@ from std_msgs.msg import String
 
 def test_receives_cpp_message():
     """Receive the expected message from the C++ publisher."""
-    topic = f"/sar_setup_check_{uuid4().hex}"
+    topic = f"/lunar_hopper_setup_check_{uuid4().hex}"
     received = Future()
 
     rclpy.init()
     try:
-        node = rclpy.create_node("sar_setup_subscriber")
+        node = rclpy.create_node("lunar_hopper_setup_subscriber")
         node.create_subscription(
             String, topic, lambda msg: received.set_result(msg.data), 10
         )
 
         with subprocess.Popen(
             [
-                os.environ["SAR_TEST_PUBLISHER"],
+                os.environ["LUNAR_HOPPER_TEST_PUBLISHER"],
                 "--ros-args",
                 "-r",
-                f"sar_setup_check:={topic}",
+                f"lunar_hopper_setup_check:={topic}",
             ]
         ) as publisher:
             try:

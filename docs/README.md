@@ -26,7 +26,7 @@ The ROS 2 Jazzy workspace, Docker setup, and existing tests carry forward. See t
 
 New to the project? Follow [Setting Up Your Environment](environment/README.md) to prepare your development machine.
 
-1. Read the introduction above and the [repository README](https://github.com/RileyHop1/SAR_DRONE) for the project and code layout.
+1. Read the introduction above and the [repository README](https://github.com/RileyHop1/Lunar-Hopper) for the project and code layout.
 2. Read the [software roadmap](software-roadmap.md) for goals, current work, and open decisions.
 3. Follow the [Git conventions](git-conventions.md) for branches, commits, and pull requests.
 4. Follow the [software development conventions](software-development-conventions.md) for interface documentation, tests, implementation, and review.

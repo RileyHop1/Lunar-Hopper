@@ -34,7 +34,7 @@ jobs:
 
               test_status=0
               colcon test --base-paths packages \
-                --packages-select sar_environment_test \
+                --packages-select lunar_hopper_environment_test \
                 --return-code-on-test-failure \
                 --event-handlers console_direct+ \
                 --ctest-args --no-tests=error \
