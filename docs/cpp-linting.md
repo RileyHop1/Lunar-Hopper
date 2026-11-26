@@ -28,10 +28,10 @@ source install/setup.bash
 python3 scripts/lint.py packages
 
 # Check a single package's test directory.
-python3 scripts/lint.py packages/sar_environment_test/test
+python3 scripts/lint.py packages/lunar_hopper_environment_test/test
 
 # Apply formatting to that directory, then check naming.
-python3 scripts/lint.py --format packages/sar_environment_test/test
+python3 scripts/lint.py --format packages/lunar_hopper_environment_test/test
 ```
 
 Review the diff after using `--format`. The script writes formatting changes directly and reports naming issues for you to fix. By default, formatting differences and naming violations fail the command.

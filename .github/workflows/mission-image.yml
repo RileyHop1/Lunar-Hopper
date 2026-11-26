@@ -9,7 +9,7 @@ permissions:
   packages: write
 
 env:
-  IMAGE: ghcr.io/rileyhop1/sar-mission
+  IMAGE: ghcr.io/rileyhop1/lunar-hopper-mission
 
 jobs:
   publish:
@@ -22,7 +22,11 @@ jobs:
       - name: Check ROS 2 workspace
         run: |
           docker run --rm "$IMAGE:$GITHUB_SHA" \
+<<<<<<< HEAD
             bash -c 'source /ros_ws/install/setup.bash && ros2 pkg prefix sar_environment_test'
+=======
+            bash -c 'source /ros_ws/install/setup.bash && ros2 pkg prefix lunar_hopper_environment_test'
+>>>>>>> 844b4ab897151898b76df633cd910d5f4cee0f25
       - name: Sign in to GHCR
         uses: docker/login-action@v4
         with:

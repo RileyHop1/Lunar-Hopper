@@ -9,9 +9,11 @@ def test_creates_node():
     rclpy.init(context=context)
 
     try:
-        node = rclpy.create_node("sar_python_setup_test", context=context)
+        node = rclpy.create_node(
+            "lunar_hopper_python_setup_test", context=context
+        )
         try:
-            assert node.get_name() == "sar_python_setup_test"
+            assert node.get_name() == "lunar_hopper_python_setup_test"
         finally:
             node.destroy_node()
 
