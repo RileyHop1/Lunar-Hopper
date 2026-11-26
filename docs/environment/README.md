@@ -18,3 +18,7 @@ Edit the repository with your usual editor. The container guide shows how to mou
 1. [Install and verify Docker](docker.md) to prepare your machine, clone the repository, and check that Docker can start a Linux container.
 2. [Start ROS 2 Jazzy](ros-jazzy.md) to open a ROS shell with the project mounted.
 3. [Verify your environment](verify.md) to build the environment test package and run the environment checks.
+
+## Onboard bench development
+
+For the original Jetson Nano, follow [Legacy Jetson Nano bring-up](legacy-jetson-nano.md). To test the published mission image and Python startup/update scripts, see [Mission image deployment and startup](../deployment/mission-image.md).

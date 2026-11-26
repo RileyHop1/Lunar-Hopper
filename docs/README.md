@@ -32,6 +32,8 @@ New to the project? Follow [Setting Up Your Environment](environment/README.md) 
 4. Follow the [software development conventions](software-development-conventions.md) for interface documentation, tests, implementation, and review.
 5. Follow the conventions for the language you are writing. [C++](cpp-conventions.md) · [Python](python-conventions.md)
 
+For onboard bench setup, see [Legacy Jetson Nano bring-up](environment/legacy-jetson-nano.md) and [Mission image deployment and startup](deployment/mission-image.md).
+
 ## Proposed website sections
 
 This is a provisional navigation structure for team review. Entries marked planned describe pages to develop.
@@ -43,7 +45,7 @@ This is a provisional navigation structure for team review. Entries marked plann
 | Architecture and interfaces | System diagram, package structure, message definitions, and design decisions | New architecture to be scoped |
 | Development guide | Git workflow, documentation-first development, testing workflow, naming, and formatting | [Git](git-conventions.md), [development](software-development-conventions.md), [C++](cpp-conventions.md), and [Python](python-conventions.md) conventions |
 | Simulation and testing | Simulation setup, test commands, scenarios, and results | Practical guides planned |
-| Deployment and operation | Prototype setup and operation, health checks, and map and data retrieval | Planned |
+| Deployment and operation | Prototype setup and operation, health checks, and map and data retrieval | [Mission image deployment](deployment/mission-image.md); health checks and map retrieval planned |
 | Roadmap and project status | Major goals, dependencies, open decisions, and verified progress | [Software roadmap](software-roadmap.md) |
 
 ## Previous project documentation
